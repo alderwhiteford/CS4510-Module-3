@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1704465101920" clover="3.2.0">
+  <project timestamp="1704465101920" name="All files">
+    <metrics statements="46" coveredstatements="42" conditionals="5" coveredconditionals="5" methods="19" coveredmethods="18" elements="70" coveredelements="65" complexity="0" loc="46" ncloc="46" packages="1" files="1" classes="1"/>
+    <file name="transcriptManager.ts" path="C:\Users\wand\OneDrive\Documents\Work\Courses\CS 4530 Spring 2024\My Modules Workspace\Module 03 Test Adequacy\Activities\module11-test-adequacy\src\transcriptManager.ts">
+      <metrics statements="46" coveredstatements="42" conditionals="5" coveredconditionals="5" methods="19" coveredmethods="18"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="14" count="19" type="stmt"/>
+      <line num="17" count="2" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="21" count="0" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="25" count="1" type="stmt"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="33" count="18" type="stmt"/>
+      <line num="34" count="18" type="stmt"/>
+      <line num="39" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="40" count="18" type="stmt"/>
+      <line num="41" count="18" type="stmt"/>
+      <line num="42" count="18" type="stmt"/>
+      <line num="43" count="18" type="stmt"/>
+      <line num="47" count="2" type="stmt"/>
+      <line num="48" count="6" type="stmt"/>
+      <line num="52" count="2" type="stmt"/>
+      <line num="53" count="6" type="stmt"/>
+      <line num="54" count="3" type="stmt"/>
+      <line num="59" count="2" type="stmt"/>
+      <line num="60" count="4" type="stmt"/>
+      <line num="61" count="4" type="cond" truecount="1" falsecount="0"/>
+      <line num="62" count="2" type="stmt"/>
+      <line num="64" count="2" type="stmt"/>
+      <line num="67" count="2" type="stmt"/>
+      <line num="68" count="16" type="stmt"/>
+      <line num="69" count="16" type="cond" truecount="1" falsecount="0"/>
+      <line num="70" count="2" type="stmt"/>
+      <line num="72" count="14" type="stmt"/>
+      <line num="73" count="14" type="stmt"/>
+      <line num="74" count="14" type="stmt"/>
+      <line num="76" count="3" type="stmt"/>
+      <line num="83" count="14" type="stmt"/>
+      <line num="84" count="14" type="cond" truecount="1" falsecount="0"/>
+      <line num="85" count="3" type="stmt"/>
+      <line num="87" count="11" type="stmt"/>
+      <line num="91" count="2" type="stmt"/>
+      <line num="92" count="6" type="stmt"/>
+      <line num="93" count="6" type="stmt"/>
+      <line num="94" count="6" type="cond" truecount="1" falsecount="0"/>
+      <line num="95" count="3" type="stmt"/>
+      <line num="98" count="3" type="stmt"/>
+    </file>
+  </project>
+</coverage>
