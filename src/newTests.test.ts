@@ -1,10 +1,18 @@
 import * as db from "./transcriptManager";
 import { Transcript } from "./transcriptManager";
 
-describe("tests for errors thrown on lines 76, 85, and 95", () => {
+describe("tests for the initialization of transcriptManager.ts", () => {
+    test("test that allTranscripts is empty prior to initialization", () => {
+        const allTranscripts = db.getAll();
+        expect(allTranscripts.length).toEqual(0);
+    });
+});
+
+describe("tests for the methods of transcriptManager.ts", () => {
     beforeEach(() => {
         db.initialize();
     })
+
     describe("getStudentIDs", () => {
         test("should return a list of student IDs that are associated with the queried name", () => {
             const avery1 = db.addStudent('avery');
@@ -16,14 +24,14 @@ describe("tests for errors thrown on lines 76, 85, and 95", () => {
 
             const students1 = db.getStudentIDs('avery');
             const students1TestList = [avery2, avery1];
-            expect(students1.length).toEqual(students1TestList);
+            expect(students1.length).toEqual(students1TestList.length);
             students1.forEach((student) => {
                 expect(students1TestList).toContain(student);
             });
 
-            const students2 = db.getStudentIDs('avery');
+            const students2 = db.getStudentIDs('ripley');
             const students2TestList = [ripley3, ripley1, ripley4, ripley2];
-            expect(students2.length).toEqual(students2TestList);
+            expect(students2.length).toEqual(students2TestList.length);
             students2.forEach((student) => {
                 expect(students2TestList).toContain(student);
             });
@@ -46,32 +54,39 @@ describe("tests for errors thrown on lines 76, 85, and 95", () => {
             
             expect(() => db.getGrade(studentID, course)).toThrow(`no grade for student ${studentID} in course ${course}`);
         })
-    })
+    });
 
+    // Line 39 Stryker Error:
+    describe("addStudent", () => {
+        test('a students course grades should be empty after they are first added', () => {
+            const studentID = db.addStudent('avery');
+            const transcript = db.getTranscript(studentID);
+            expect(transcript?.grades.length).toEqual(0);
+        });
+    });
 
+    // Line 47 & 48 Stryker Error: 
     describe("getTranscript", () => {
-        //  return allTranscripts.find(transcript => (transcript.student.studentID == studentID));
-        test('returns the transcript associated with the given studentID', () => {
+        test('if a student exists, a transcript should be defined', () => {
             const studentID = db.addStudent('avery');
-            const course = 'CS4530';
-            db.addGrade(studentID, course, 95);
-            
-            let studentTranscript: Transcript;
-            
+            const transcript = db.getTranscript(studentID);
+            expect(transcript).toBeDefined();
         });
-        
-        test('returns undefined if student does not exist', () => {
-            const studentID = db.addStudent('avery');
-            const course = 'CS4530';
-            
-            expect(() => db.getTranscript(studentID)).toEqual(`no grade for student ${studentID} in course ${course}`);
+        test('if a student does not exist, a transcript should be undefined', () => {
+            const transcript = db.getTranscript(12345);
+            expect(transcript).toBeUndefined();
         });
-    // })
-    
-    describe("addStudent", () => [
-        test("transcript should be empty at default", () => {
-            const studentID = db.addStuden
-            
-            
-    ])
+        test('the transcript returned should be associated with the student', () => {
+            const averyID = db.addStudent('avery');
+            const rohanID = db.addStudent('rohan');
+            const course = 'History'
+            db.addGrade(averyID, course, 90);
+
+            const rohanTranscript = db.getTranscript(rohanID);
+            expect(rohanTranscript?.grades.length).toEqual(0);
+
+            const averyTranscript = db.getTranscript(averyID);
+            expect(averyTranscript?.grades.length).toEqual(1);
+        });
+    });
 });
