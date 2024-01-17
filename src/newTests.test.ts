@@ -89,4 +89,23 @@ describe("tests for the methods of transcriptManager.ts", () => {
             expect(averyTranscript?.grades.length).toEqual(1);
         });
     });
+
+    // Line 68-70 Stryker Errors:
+    describe("addGrade", () => {
+        test('the grade should be added if there is a transcript associated with the specified studentID', () => {
+            const averyID = db.addStudent('avery');
+            const rohanID = db.addStudent('rohan');
+            const course = 'History';
+            
+            db.addGrade(averyID, course, 90);
+            db.addGrade(rohanID, course, 100);
+
+            expect(db.getGrade(rohanID, course)).toEqual(100);
+        })
+        test('an error should be thrown if there is no student in the transcript with the specified ID', () => {
+            const studentID = 1;
+            const course = 'History';
+            expect(() => db.addGrade(studentID, course, 100)).toThrow(`no student with ID = ${studentID}`);
+        })
+    })
 });
