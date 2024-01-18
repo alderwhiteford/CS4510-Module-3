@@ -79,7 +79,7 @@ export function addGrade(studentID: StudentID, course: Course, grade: number): v
 
 // returns transcript like the original, but with the new grade added.
 // throws an error if the course is already on the transcript
-function addGradeToTranscript(theTranscript: Transcript, course: Course, grade: number): Transcript {
+export function addGradeToTranscript(theTranscript: Transcript, course: Course, grade: number): Transcript {
   const { grades } = theTranscript;
   if (grades.findIndex(entry => entry.course === course) != -1) {
     throw new Error();
