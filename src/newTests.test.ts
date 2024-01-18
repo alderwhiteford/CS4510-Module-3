@@ -139,7 +139,7 @@ describe('tests for the methods of transcriptManager.ts', () => {
   });
 
   // Line 84 Stryker Error:
-  describe('addGradeToTranscript', () => {
+    describe('addGradeToTranscript', () => {
     test('if a transcript has no grades, a grade can be added', () => {
       const avery: db.Student = { studentID: 12345, studentName: 'avery' };
       const transcript: Transcript = { student: avery, grades: [] };
@@ -179,20 +179,39 @@ describe('tests for the methods of transcriptManager.ts', () => {
 
     // Line 68-70 Stryker Errors:
     describe("addGrade", () => {
-        test('the grade should be added if there is a transcript associated with the specified studentID', () => {
-            const averyID = db.addStudent('avery');
-            const rohanID = db.addStudent('rohan');
-            const course = 'History';
-            
-            db.addGrade(averyID, course, 90);
-            db.addGrade(rohanID, course, 100);
+      test('the grade should be added if there is a transcript associated with the specified studentID', () => {
+          const averyID = db.addStudent('avery');
+          const rohanID = db.addStudent('rohan');
+          const course = 'History';
+          
+          db.addGrade(averyID, course, 90);
+          db.addGrade(rohanID, course, 100);
 
-            expect(db.getGrade(rohanID, course)).toEqual(100);
-        })
-        test('an error should be thrown if there is no student in the transcript with the specified ID', () => {
-            const studentID = 1;
-            const course = 'History';
-            expect(() => db.addGrade(studentID, course, 100)).toThrow(`no student with ID = ${studentID}`);
-        })
+          expect(db.getGrade(rohanID, course)).toEqual(100);
+      })
+      test('an error should be thrown if there is no student in the transcript with the specified ID', () => {
+          const studentID = 1;
+          const course = 'History';
+          expect(() => db.addGrade(studentID, course, 100)).toThrow(`no student with ID = ${studentID}`);
+      })
     })
+
+    // Line 60, 62
+    describe('deleteStudent', () => {
+      test('it should throw an error if the student does not exist', () => {
+        expect(() => db.deleteStudent(2)).toThrow('no student with ID = 2');
+      });
+
+      test('it should delete the student transcript associated with the id', () => {
+        const averyID = db.addStudent('avery');
+        const rohanID = db.addStudent('rohan');
+
+        db.deleteStudent(rohanID);
+        const rohanTranscript = db.getTranscript(rohanID);
+        const averyTranscript = db.getTranscript(averyID);
+        expect(rohanTranscript).toBeUndefined();
+        expect(averyTranscript).toBeDefined();
+      });
+    });
+  })
 });
